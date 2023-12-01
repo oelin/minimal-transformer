@@ -38,7 +38,7 @@ class TransformerLayer(nn.Module):
         self.mlp = nn.Sequential(
             nn.Linear(in_features=embedding_dimension, out_features=embedding_dimension * 3),
             nn.GELU(),
-            nn.Linear(in_features=embedding_dimension * 3 out_features=embedding_dimension),
+            nn.Linear(in_features=embedding_dimension * 3, out_features=embedding_dimension),
             nn.GELU(),
         )
     
