@@ -16,8 +16,7 @@ class Attention(nn.Module):
         self.linear_out = nn.Linear(in_features=embedding_dimension, out_features=embedding_dimension, bias=False)
     
     def forward(self, x: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
-        """Forward pass."""
-
+        
         q, k, v = rearrange(self.linear_qkv(x), 'b s (k h e) -> k b h s e', k=3, e=self.embedding_dimension)
         x = F.scaled_dot_product_attention(q, k, v, attn_mask=mask)
         x = self.linear_out(rearrange(x, 'b h s e -> b s (h e)'))
