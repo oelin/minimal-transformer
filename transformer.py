@@ -51,7 +51,7 @@ class TransformerLayer(nn.Module):
 
 class Transformer(nn.Module):
     
-    def __init__(self, embedding_dimension: int, number_of_heads: int, number_of_layers: int, vocabulary_size: int) -> None:
+    def __init__(self, embedding_dimension: int, number_of_heads: int, number_of_layers: int, vocabulary_size: int, maximum_sequence_length: int) -> None:
         
         super().__init__()
 
