@@ -11,13 +11,13 @@ class Attention(nn.Module):
         
         super().__init__()
 
-        self.embedding_dimension = embedding_dimension
+        self.number_of_heads = number_of_heads
         self.linear_qkv = nn.Linear(in_features=embedding_dimension, out_features=embedding_dimension * 3, bias=False)
         self.linear_out = nn.Linear(in_features=embedding_dimension, out_features=embedding_dimension, bias=False)
     
     def forward(self, x: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
         
-        q, k, v = rearrange(self.linear_qkv(x), 'b s (k h e) -> k b h s e', k=3, e=self.embedding_dimension)
+        q, k, v = rearrange(self.linear_qkv(x), 'b s (k h e) -> k b h s e', k=3, h=self.number_of_heads)
         x = F.scaled_dot_product_attention(q, k, v, attn_mask=mask)
         x = self.linear_out(rearrange(x, 'b h s e -> b s (h e)'))
       
