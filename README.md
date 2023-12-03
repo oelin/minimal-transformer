@@ -1,6 +1,6 @@
 # Minimal Transformer
 
-A minimal decoder-only transformer implemented in under 100 lines of PyTorch.
+A minimal decoder-only transformer implemented in under 50 lines of PyTorch.
 
 ## Purpose
 
