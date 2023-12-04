@@ -35,10 +35,9 @@ class TransformerLayer(nn.Module):
         self.normalization_2 = nn.LayerNorm(normalized_shape=embedding_dimension)
         
         self.mlp = nn.Sequential(
-            nn.Linear(in_features=embedding_dimension, out_features=embedding_dimension * 3),
+            nn.Linear(in_features=embedding_dimension, out_features=embedding_dimension * 4),
             nn.GELU(),
-            nn.Linear(in_features=embedding_dimension * 3, out_features=embedding_dimension),
-            nn.GELU(),
+            nn.Linear(in_features=embedding_dimension * 4, out_features=embedding_dimension),
         )
     
     def forward(self, x: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
